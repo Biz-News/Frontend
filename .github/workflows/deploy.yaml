@@ -24,17 +24,15 @@ jobs:
 
       - name: Build Docker Image
         run: |
-          # "kakaotechhackathonnews/frontend" 라는 이름으로 빌드
           docker build \
-            -t kakaotechhackathonnews/frontend:latest \
-            -t kakaotechhackathonnews/frontend:${{ github.sha }} \
+            -t kakaoteckhackathonnews/frontend:latest \
+            -t kakaoteckhackathonnews/frontend:${{ github.sha }} \
             .
 
       - name: Push Docker Image
         run: |
-          # latest 태그와 SHA 태그 모두 푸시
-          docker push kakaotechhackathonnews/frontend:latest
-          docker push kakaotechhackathonnews/frontend:${{ github.sha }}
+          docker push kakaoteckhackathonnews/frontend:latest
+          docker push kakaoteckhackathonnews/frontend:${{ github.sha }}
 
 
   deploy-to-ec2:
@@ -49,8 +47,7 @@ jobs:
           key: ${{ secrets.EC2_KEY }}
           port: ${{ secrets.EC2_PORT }}
           script: |
-            # 최신 태그 사용 (필요하면 SHA 태그로도 배포 가능)
-            IMAGE=kakaotechhackathonnews/frontend:latest
+            IMAGE=kakaoteckhackathonnews/frontend:latest
 
             echo "Stopping existing container (if any)..."
             docker stop frontend || true
