@@ -20,7 +20,7 @@ RUN yarn build
 
 # ----- 런타임 단계 -----
 # 가볍고 최적화된 node:16-alpine 이미지를 사용합니다.
-FROM node:16-alpine
+FROM node:18-alpine
 
 # 작업 디렉토리를 /app으로 설정합니다.
 WORKDIR /app
