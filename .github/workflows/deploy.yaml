@@ -46,7 +46,7 @@ jobs:
           key: ${{ secrets.EC2_KEY }}
           port: ${{ secrets.EC2_PORT }}
           script: |
-          # 최신 태그를 배포한다고 가정
+            # 최신 태그를 배포한다고 가정
             IMAGE=kakatechhackatonews/frontend:latest
 
             echo "Stopping existing container (if any)..."
