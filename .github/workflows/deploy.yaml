@@ -25,14 +25,14 @@ jobs:
       - name: Build Docker Image
         run: |
           docker build \
-            -t kakatechhackatonews/frontend:latest \
-            -t kakatechhackatonews/frontend:${{ github.sha }} \
+            -t kakaotechhackathonews/frontend:latest \
+            -t kakaotechhackathonews/frontend:${{ github.sha }} \
             .
 
       - name: Push Docker Image
         run: |
-          docker push kakatechhackatonews/frontend:latest
-          docker push kakatechhackatonews/frontend:${{ github.sha }}
+          docker push kakaotechhackathonews/frontend:latest
+          docker push kakaotechhackathonews/frontend:${{ github.sha }}
 
   deploy-to-ec2:
     runs-on: ubuntu-latest
@@ -47,7 +47,7 @@ jobs:
           port: ${{ secrets.EC2_PORT }}
           script: |
             # 최신 태그를 배포한다고 가정
-            IMAGE=kakatechhackatonews/frontend:latest
+            IMAGE=kakaotechhackathonews/frontend:latest
 
             echo "Stopping existing container (if any)..."
             docker stop frontend || true
