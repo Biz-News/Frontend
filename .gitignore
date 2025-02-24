@@ -1,0 +1,12 @@
+# Node.js 관련
+node_modules/
+npm-debug.log
+yarn-error.log
+package-lock.json
+.next/
+build/
+dist/
+
+# 환경 변수
+.env
+.env.local
