@@ -1,6 +1,6 @@
 # ----- 빌드 단계 -----
-# node:16 이미지를 기반으로 빌드 환경을 구성합니다.
-FROM node:16 AS builder
+# Node 18 버전을 사용하여 빌드 환경 구성 (최소 18.18.0 이상 필요)
+FROM node:18 AS builder
 
 # 작업 디렉토리를 /app으로 설정합니다.
 WORKDIR /app
