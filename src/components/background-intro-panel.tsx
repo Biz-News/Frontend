@@ -10,14 +10,14 @@ export default function BackgroundIntroPanel() {
           />
         </div>
         <div className="relative inline-block w-full md:w-auto">
-          <h1 className="text-xl md:text-2xl font-bold text-[#2B3A85] mb-2 text-center md:text-left">
+          <h1 className="text-xl md:text-2xl font-bold text-[#0a0101] mb-2 text-center md:text-left">
             내가 원하는 기업 뉴스를 한번에!
           </h1>
-          <div className="absolute bottom-0 left-0 w-full h-[3px] bg-gradient-to-r from-blue-400 to-blue-200 rounded-full"></div>
+          <div className="absolute bottom-0 left-0 w-full h-[3px] bg-gradient-to-r from-red-400 to-blue-200 rounded-full"></div>
         </div>
         <div className="space-y-2 mt-4 text-center md:text-left">
           <p className="text-sm text-gray-600 font-medium">
-            취업 준비생, 맞춤형 기업 뉴스 필요하세요?
+            주식 투자자, 맞춤형 기업 뉴스 필요하세요?
           </p>
           <p className="text-sm text-gray-500">
             방대한 뉴스 속에서 핵심 정보가 필요하신가요?
