@@ -2,6 +2,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import BackgroundIntroPanel from "@/components/background-intro-panel";
 import "./globals.css";
 import { Metadata } from "next";
+import { PropsWithChildren } from "react";
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -28,7 +29,7 @@ export const metadata: Metadata = {
     },
 };
 
-export default function RootLayout({ children }) {
+export default function RootLayout({ children }: PropsWithChildren) {
     return (
         <html lang="ko">
 
