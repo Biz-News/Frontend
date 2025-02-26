@@ -1,7 +1,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import BackgroundIntroPanel from "@/components/background-intro-panel";
 import "./globals.css";
-import { Metadata } from "next";
+import { Metadata, Viewport } from "next";
 import { PropsWithChildren } from "react";
 
 const geistSans = Geist({
@@ -17,11 +17,6 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
     title: "BIZN",
     description: "AI 기반 기업 뉴스 요약 서비스",
-    viewport: {
-        width: 'device-width',
-        initialScale: 1,
-        maximumScale: 1,
-    },
     icons: {
         icon: "/logo.svg",
         shortcut: "/logo.svg",
@@ -29,16 +24,21 @@ export const metadata: Metadata = {
     },
 };
 
+export const viewport: Viewport = {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 1,
+};
+
 export default function RootLayout({ children }: PropsWithChildren) {
     return (
         <html lang="ko">
-
             <body
-                className={`${geistSans.variable} ${geistMono.variable} antialiased relative`}
+                className={`${geistSans.variable} ${geistMono.variable} antialiased relative bg-gray-100/50 h-screen overflow-hidden`}
             >
                 <BackgroundIntroPanel />
                 <div className="mobile-container relative">
-                    <div className="mobile-padding">
+                    <div className="mobile-padding h-screen overflow-y-auto">
                         {children}
                     </div>
                 </div>
