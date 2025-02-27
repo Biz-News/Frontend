@@ -28,7 +28,6 @@ export function NavBar() {
                     />
                 </svg>
             </button>
-
             <div className="flex-1 flex justify-center">
                 <Link href="/" className="flex items-center hover:opacity-80 transition-opacity">
                     <img

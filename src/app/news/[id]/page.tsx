@@ -1,8 +1,11 @@
-import { 
-  CompanyInfoAccordion, 
-  NewsSummary, 
+import {
+  CompanyInfoAccordion,
+  NewsSummary,
   NewsHeader,
-  RelatedNews 
+  RelatedNews,
+  Keyword,
+  RelatedCompanies,
+  ChartLink
 } from "@/components/news";
 
 interface NewsProps {
@@ -15,25 +18,26 @@ async function getNews(id: string) {
   return {
     id,
     company: "삼성전자",
-    summary: [
-      {
-        description: "삼성전자의 주가가 상승했습니다.",
-        type: 'good',
-      },
-      {
-        description: "삼성전자의 주가가 하락했습니다.",
-        type: 'bad',
-      },
-      {
-        description: "이재용이 석방되었습니다.",
-        type: 'good',
-      },
-
-    ],
+    title: "삼성전자, 양자 컴퓨터 해킹",
+    content: "삼성전자가 반도체 업계 최초로 하드웨어 양자내성암호(PQC)를 탑재한 보안 칩을 개발했다. 향후 양자컴퓨터로 인한 암호체계 무력화 위험에 대응하기 위한 것이다. 26일 삼성 반도체 홈페이지를 살펴보면, 삼성전자 DS(반도체)부문 시스템LSI 사업부는 최근 하드웨어에 PQC 기술을 적용한 보안 칩 'S3SSE2A'의 개발을 마치고 샘플 출하 준비에 한창이다.",
     links: [
       "https://www.google.com",
       "https://www.google.com",
       "https://www.google.com",
+    ],
+    related_companies: [
+      {
+        id: 1,
+        name: "연관기업1",
+      },
+      {
+        id: 2,
+        name: "연관기업2",
+      },
+      {
+        id: 3,
+        name: "연관기업3",
+      },
     ],
     news: [
       {
@@ -61,7 +65,18 @@ async function getNews(id: string) {
         keywords: ["삼성전자", "이재용", "석방"],
       },
     ],
-    keywords: ["삼성전자", "이재용", "주가", "석방"],
+    keywords: [
+      { text: "삼성전자", value: 10 },
+      { text: "이재용", value: 5 },
+      { text: "석방", value: 3 },
+      { text: "양자컴퓨터", value: 2 },
+      { text: "PQC", value: 1 },
+      { text: "보안", value: 1 },
+      { text: "반도체", value: 1 },
+      { text: "주가", value: 1 },
+      { text: "하락", value: 1 },
+      { text: "상승", value: 1 },
+    ],
   };
 }
 
@@ -78,16 +93,17 @@ async function getCompanyInfo(id: string) {
 export default async function News({ params }: NewsProps) {
   const { id } = await params;
   const { company, image } = await getCompanyInfo(id);
-  const { summary, links, news, keywords } = await getNews(id);
+  const { title, content, related_companies, news, keywords } = await getNews(id);
 
   return (
     <main className="bg-fixed bg-gray-50">
       <div className="max-w-4xl mx-auto px-4 py-8 relative">
         <NewsHeader company={company} />
-        <div className="bg-white shadow-sm rounded-lg p-4 md:p-6 mb-8">
-          <NewsSummary company={company} summary={summary} />
-        </div>
+        <RelatedCompanies companies={related_companies} />
+        <ChartLink id={id} company={company} />
+        <NewsSummary title={title} content={content} />
         <RelatedNews news={news} />
+        <Keyword keywords={keywords} />
         <CompanyInfoAccordion company={company} image={image} />
       </div>
     </main>
