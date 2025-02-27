@@ -7,7 +7,7 @@ export interface GraphNode {
   name: string;
   group: number;
   size?: number;
-  properties?: Record<string, any>;
+  properties?: { [key: string]: any };
   x?: number;
   y?: number;
   fx?: number | null;
@@ -20,7 +20,7 @@ export interface GraphLink {
   target: string | GraphNode;
   type: string;
   weight?: number;
-  properties?: Record<string, any>;
+  properties?: { [key: string]: any };
 }
 
 // 그래프 데이터 인터페이스
