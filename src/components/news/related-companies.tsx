@@ -1,12 +1,12 @@
 import Link from "next/link";
 
-interface Company {
-  id: number;
-  name: string;
+interface RelatedCompany {
+  company_id: string;
+  company: string;
 }
 
 interface RelatedCompaniesProps {
-  companies: Company[];
+  companies: RelatedCompany[];
 }
 
 export function RelatedCompanies({ companies }: RelatedCompaniesProps) {
@@ -14,11 +14,11 @@ export function RelatedCompanies({ companies }: RelatedCompaniesProps) {
     <div className="flex flex-wrap gap-2 mb-6">
       {companies.map((company) => (
         <Link
-          key={company.id}
-          href={`/news/${company.id}`}
+          key={company.company_id}
+          href={`/news/${company.company_id}`}
           className="px-4 py-2 bg-gray-100 rounded-full text-sm text-gray-700 hover:bg-gray-200 transition-colors cursor-pointer"
         >
-          {company.name}
+          {company.company}
         </Link>
       ))}
     </div>

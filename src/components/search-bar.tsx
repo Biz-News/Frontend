@@ -3,17 +3,20 @@
 import { Autocomplete, TextField } from '@mui/material';
 import { useRouter } from 'next/navigation'
 
-export function SearchBar() {
+interface SearchBarProps {
+  companyList: {
+    id: number;
+    name: string;
+  }[];
+}
+
+export function SearchBar({ companyList }: SearchBarProps) {
   const router = useRouter();
 
-  const options = [
-    { label: '삼성전자', id: 1 },
-    { label: 'LG전자', id: 2 },
-    { label: '현대자동차', id: 3 },
-    { label: 'SK하이닉스', id: 4 },
-    { label: '카카오', id: 5 },
-    { label: '네이버', id: 6 },
-  ];
+  const options = companyList.map((company) => ({
+    label: company.name,
+    id: company.id,
+  }));
 
   return (
     <Autocomplete
