@@ -151,11 +151,11 @@ async function postSummary(): Promise<Summary> {
 
 // 기업 정보 가져오기 (Backend API)
 async function getCompanyInfo(id: string): Promise<CompanyInfo> {
-  // const res = await fetch(`http://13.124.216.60/companies/${id}`);
-  // const data = await res.json();
-  // return res.json();
+  const res = await fetch(`http://13.124.216.60:8080/companies/${id}`);
+  const data = await res.json();
+  return data;
 
-  return {
+ /*  return {
     company_id: id,
     company: "삼성전자",
     "company_name_en": "Samsung",
@@ -171,7 +171,7 @@ async function getCompanyInfo(id: string): Promise<CompanyInfo> {
     "kosdaq_listed_date": "2003-10-01",
     "employee_count": 5000,
     logo_image: "https://mblogthumb-phinf.pstatic.net/20160614_119/ppanppane_1465870699828cgTOd_PNG/%BB%EF%BC%BA_%B7%CE%B0%ED_%282%29.png?type=w800",
-  };
+  }; */
 
 }
 
