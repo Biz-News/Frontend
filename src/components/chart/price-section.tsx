@@ -1,10 +1,19 @@
+import { StockChart } from "./stock-chart";
+
 interface PriceSectionProps {
   currentPrice: string;
   priceChange: string;
   changeRate: string;
+  stockData: {
+    x: string;
+    o: number;
+    h: number;
+    l: number;
+    c: number;
+  }[];
 }
 
-export function PriceSection({ currentPrice, priceChange, changeRate }: PriceSectionProps) {
+export function PriceSection({ currentPrice, priceChange, changeRate, stockData }: PriceSectionProps) {
   return (
     <div className="bg-white rounded-lg p-5 shadow-sm mb-4">
       <div className="mb-3">
@@ -13,10 +22,7 @@ export function PriceSection({ currentPrice, priceChange, changeRate }: PriceSec
           {priceChange}원 ({changeRate})
         </div>
       </div>
-      {/* 임시 차트 박스 */}
-      <div className="w-full h-72 bg-gray-100 rounded-lg flex items-center justify-center">
-        <p className="text-gray-400 text-sm">차트가 들어갈 영역</p>
-      </div>
+      <StockChart data={stockData} />
     </div>
   );
 } 
