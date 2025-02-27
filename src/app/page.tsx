@@ -2,9 +2,10 @@ import { SearchBar } from "@/components/search-bar";
 
 
 async function getCompanyList() {
-  // const res = await fetch("http://13.124.216.60/companies");
-  // const data = await res.json();
-  // return data;
+   const res = await fetch("http://13.124.216.60:8080/companies");
+   const data = await res.json();
+
+   return data;
 
   return [
     {

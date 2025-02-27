@@ -5,8 +5,8 @@ import { useRouter } from 'next/navigation'
 
 interface SearchBarProps {
   companyList: {
-    id: number;
-    name: string;
+    company: string;
+    company_id: string;
   }[];
 }
 
@@ -14,8 +14,8 @@ export function SearchBar({ companyList }: SearchBarProps) {
   const router = useRouter();
 
   const options = companyList.map((company) => ({
-    label: company.name,
-    id: company.id,
+    label: company.company,
+    id: company.company_id,
   }));
 
   return (
