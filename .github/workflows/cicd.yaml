@@ -22,7 +22,6 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
-
       - name: Build Docker Image
         run: |
           docker build \
@@ -34,7 +33,6 @@ jobs:
         run: |
           docker push kakaoteckhackathonnews/frontend:latest
           docker push kakaoteckhackathonnews/frontend:${{ github.sha }}
-
 
   deploy-to-ec2:
     runs-on: ubuntu-latest
@@ -49,6 +47,7 @@ jobs:
           port: ${{ secrets.EC2_PORT }}
           script: |
             IMAGE=kakaoteckhackathonnews/frontend:latest
+            ENV_FILE_PATH=/home/ubuntu/envs/frontend.env
 
             docker network create news-network || true
 
@@ -56,10 +55,16 @@ jobs:
             docker stop frontend || true
             docker rm frontend || true
 
+            echo "Creating .env file..."
+            mkdir -p /home/ubuntu/envs
+            echo "NEO4J_URI=${{ secrets.NEO4J_URI }}" > $ENV_FILE_PATH
+            echo "NEO4J_USER=${{ secrets.NEO4J_USER }}" >> $ENV_FILE_PATH
+            echo "NEO4J_PASSWORD=${{ secrets.NEO4J_PASSWORD }}" >> $ENV_FILE_PATH
+
             echo "Pulling new Docker image: $IMAGE"
             docker pull $IMAGE
 
-            echo "Running new container..."
-            docker run -d --name frontend --network news-network -p 3000:3000 $IMAGE
+            echo "Running new container with .env..."
+            docker run -d --name frontend --network news-network --env-file $ENV_FILE_PATH -p 3000:3000 $IMAGE
 
             echo "Deployment complete."
