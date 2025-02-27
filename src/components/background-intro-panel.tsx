@@ -1,6 +1,6 @@
 export default function BackgroundIntroPanel() {
   return (
-    <div className="w-full md:w-96 px-4 md:pl-8 absolute left-0 md:left-10 top-1/2 -translate-y-1/2">
+    <div className="w-full px-4 md:pl-8 absolute left-0 md:left-10 top-1/2 -translate-y-1/2">
       <div className="space-y-3">
         <div className="animate-float flex justify-center md:justify-start">
           <img
