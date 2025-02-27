@@ -5,7 +5,8 @@ import {
   RelatedNews,
   Keyword,
   RelatedCompanies,
-  ChartLink
+  ChartLink,
+  AnimatedSection
 } from "@/components/news";
 
 interface NewsProps {
@@ -101,9 +102,15 @@ export default async function News({ params }: NewsProps) {
         <NewsHeader company={company} />
         <RelatedCompanies companies={related_companies} />
         <ChartLink id={id} company={company} />
-        <NewsSummary title={title} content={content} />
-        <RelatedNews news={news} />
-        <Keyword keywords={keywords} />
+        <AnimatedSection delay={0}>
+          <NewsSummary title={title} content={content} />
+        </AnimatedSection>
+        <AnimatedSection delay={1}>
+          <RelatedNews news={news} />
+        </AnimatedSection>
+        <AnimatedSection delay={2}>
+          <Keyword keywords={keywords} />
+        </AnimatedSection>
         <CompanyInfoAccordion company={company} image={image} />
       </div>
     </main>
