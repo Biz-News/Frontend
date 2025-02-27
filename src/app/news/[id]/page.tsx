@@ -20,10 +20,12 @@ interface NewsProps {
 
 // 연관 기업 가져오기 (AI API)
 async function getRelatedCompanies(id: string): Promise<RelatedCompany> {
-  // const res = await fetch(`http://13.124.216.60/companies/${id}/related`);
-  // const data = await res.json(); 
-  // return data;
-  return {
+  // /companies/{company_id}/related/?num={num}
+   const res = await fetch(`http://13.124.216.60:8000/companies/${id}/related/?num=5`);
+   const data = await res.json(); 
+   console.log(data,"여기여기");
+   return data;
+  /*  return {
     company_id: "1",
     company: "삼성전자",
     related_companies: [
@@ -40,15 +42,15 @@ async function getRelatedCompanies(id: string): Promise<RelatedCompany> {
         company: "SK하이닉스",
       },
     ],
-  };
+  }; */
 }
 
 // 연관 키워드 가져오기 (AI API)
 async function getRelatedKeywords(id: string): Promise<Keywords> {
-  // const res = await fetch(`http://13.124.216.60/keywords/${id}/related`);
-  // const data = await res.json();
-  // return data;
-
+   const res = await fetch(`http://13.124.216.60:8000/keywords/${id}/related`);
+   const data = await res.json();
+   return data;
+  /*  return {
   return {
     keywords: [
       { keyword: "삼성전자", keyword_id: "1" },
@@ -62,28 +64,22 @@ async function getRelatedKeywords(id: string): Promise<Keywords> {
       { keyword: "해킹", keyword_id: "9" },
       { keyword: "보안", keyword_id: "10" },
     ],
-  };
+  }; */
 }
 
 // 관련 뉴스 가져오기 (AI API), 뉴스 아이디만 가져옴, 감성 분석 따로 해야함
-async function postNews(id: string, keyword_id_list: string[]): Promise<NewsId> {
-  /* const res = await fetch(`http://13.124.216.60/news/${id}`, {
-    method: "POST",
-    body: JSON.stringify({ 
-      company_id: id,
-      keyword_id_list
-     }),
-  });
+async function getNews(id: string): Promise<NewsId> {
+  const res = await fetch(`http://13.124.216.60:8000/news/${id}`);
   const data = await res.json();
-  return data; */
+  return data;
 
-  return {
+  /* return {
     news_id: [
       "1",
       "2",
       "3",
     ],
-  };
+  }; */
 }
 
 // 뉴스 감성 분석 (AI API)
@@ -192,8 +188,7 @@ async function SummarySection({ id }: { id: string }) {
 }
 
 async function RelatedNewsSection({ id }: { id: string }) {
-  const related_keywords = await getRelatedKeywords(id);
-  const { news_id } = await postNews(id, related_keywords.keywords.map((keyword) => keyword.keyword_id));
+  const { news_id } = await getNews(id);
   const { news } = await postNewsSentiment(news_id);
   
   return (
