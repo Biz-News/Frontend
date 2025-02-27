@@ -1,16 +1,26 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-
+import { useRouter, usePathname } from "next/navigation";
 
 export function NavBar() {
     const router = useRouter();
+    const pathname = usePathname();
+
+    const handleBack = () => {
+        if (pathname.includes('/chart')) {
+            router.back();
+        } else if (pathname.startsWith('/news/')) {
+            router.push('/');
+        } else {
+            router.back();
+        }
+    };
 
     return (
         <nav className="relative w-full py-3.5 px-4 flex items-center border-b border-gray-100 bg-white/90 backdrop-blur-sm">
             <button 
-                onClick={() => router.back()}
+                onClick={handleBack}
                 className="absolute left-4 text-gray-600 hover:text-gray-900 transition-colors"
             >
                 <svg 
