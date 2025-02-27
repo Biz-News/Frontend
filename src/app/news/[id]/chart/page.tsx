@@ -7,20 +7,20 @@ interface ChartPageProps {
 }
 
 async function getStockInfo(id: string): Promise<StockInfo> {
-    //const res = await fetch(`http://13.124.216.60:8000/companies/stock-info/${id}`);
-    //const data = await res.json();
+    const res = await fetch(`http://13.124.216.60:8000/companies/stock-info/${id}`);
+    const data = await res.json();
 
-    // return data;
-    return {
-        company_name: "삼성전자",
-        ticker: "005930",
-        trading_volume: "234만",
-        trading_value: "234억",
-        low_52weeks: "5,000원",
-        high_52weeks: "200,000원",
-        change_amount: 1000,
-        change_percent: 1.37,
-    };
+    return data;
+    // return {
+    //     company_name: "삼성전자",
+    //     ticker: "005930",
+    //     trading_volume: "234만",
+    //     trading_value: "234억",
+    //     low_52weeks: "5,000원",
+    //     high_52weeks: "200,000원",
+    //     change_amount: 1000,
+    //     change_percent: 1.37,
+    // };
 }
 
 async function getStockData(id: string) {
