@@ -72,9 +72,9 @@ export function SearchBar({ companyList }: SearchBarProps) {
       renderInput={(params) => (
         <TextField 
           {...params} 
-          placeholder="기업명을 입력하세요" 
+          placeholder="복잡한 기업 뉴스를 한 곳에서 쏙 - 찾아보세요 !" 
           sx={{ 
-            input: { fontSize: '0.9rem' }
+            input: { fontSize: '0.8rem' }
           }}
         />
       )}

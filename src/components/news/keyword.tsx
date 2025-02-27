@@ -18,7 +18,7 @@ export function Keyword({ keywords }: Keywords) {
   return (
     <div className="bg-white shadow-sm rounded-lg p-4 md:p-6 mb-8">
       <h3 className="text-base md:text-lg font-semibold mb-4 text-gray-800">
-        주요 키워드
+      🖍️ 주요 키워드
       </h3>
       <div className="flex flex-wrap gap-3 justify-center items-center p-4">
         {keywords.slice(0, 10).map((keyword, index) => (
