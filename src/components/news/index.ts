@@ -5,3 +5,4 @@ export * from './related-news';
 export * from './keyword';
 export * from './related-companies';
 export * from './chart-link';
+export * from './animated-section';
