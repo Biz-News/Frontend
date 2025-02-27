@@ -4,7 +4,7 @@ let driver: Driver;
 
 // Neo4j 드라이버 초기화
 export function initDriver() {
-  const uri = process.env.NEO4J_URI || 'bolt://neo4j:7474';
+  const uri = process.env.NEO4J_URI || 'bolt://13.124.216.60:7687';
   const user = process.env.NEO4J_USER || 'neo4j';
   const password = process.env.NEO4J_PASSWORD || '123456789';
   
