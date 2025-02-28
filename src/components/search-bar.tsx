@@ -79,7 +79,6 @@ export function SearchBar({ companyList }: SearchBarProps) {
         />
       )}
       onChange={(event, newValue) => {
-        console.log(newValue);
         router.push(`/news/${newValue?.id}`);
       }}
     />

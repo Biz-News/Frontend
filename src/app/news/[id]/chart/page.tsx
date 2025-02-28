@@ -27,10 +27,8 @@ async function getStockInfo(id: string): Promise<StockInfo> {
 }
 
 async function getStockData(ticker: string, period: string = '123') {
-    // @app.get("/companies/stock-info/{ticker}/chart/{days}")
     const res = await fetch(`http://13.124.216.60:8000/companies/stock-info/${ticker}/chart/${period}`);
     const data = await res.json();
-    console.log(data, "여기여기 주가 차트");
     return data;
 }
 
