@@ -17,8 +17,8 @@ export default function Home() {
     setLoading(true);
     try {
       const endpoint = viewType === 'keywords' 
-        ? `/api/graph/company-keywords?company=${encodeURIComponent(companyName)}`
-        : `/api/graph/company-news?company=${encodeURIComponent(companyName)}`;
+        ? `http://13.124.216.60:8000/api/graph/company-keywords?company=${encodeURIComponent(companyName)}`
+        : `http://13.124.216.60:8000/api/graph/company-news?company=${encodeURIComponent(companyName)}`;
       
       const response = await fetch(endpoint);
       
