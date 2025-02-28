@@ -47,7 +47,7 @@ body {
   }
   
   .mobile-padding {
-    @apply px-[var(--safe-area-padding)];
+    @apply px-[var(--safe-area-padding)] pb-20 sm:pb-0;
     
     /* 스크롤바 스타일링 */
     &::-webkit-scrollbar {
