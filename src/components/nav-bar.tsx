@@ -8,7 +8,7 @@ export function NavBar() {
     const pathname = usePathname();
 
     const handleBack = () => {
-        if (pathname.includes('/chart')) {
+        if (pathname.includes('/chart') || pathname.includes('/graph')) {
             router.back();
         } else if (pathname.startsWith('/news/')) {
             router.push('/');

@@ -55,66 +55,98 @@ export default function Home() {
   };
 
   return (
-    <main className="flex min-h-screen flex-col p-6">
-      <h1 className="text-2xl font-bold mb-4">Neo4j 그래프 시각화</h1>
-      
-      <div className="mb-4 flex items-center">
-        <input
-          type="text"
-          value={companyName}
-          onChange={(e) => setCompanyName(e.target.value)}
-          placeholder="회사명 입력"
-          className="border p-2 mr-2 rounded"
-        />
-        <button
-          onClick={fetchData}
-          disabled={loading}
-          className="bg-blue-500 text-white px-4 py-2 rounded disabled:opacity-50"
-        >
-          {loading ? '로딩 중...' : '검색'}
-        </button>
+    <main className="min-h-screen bg-gray-50">
+      <div className="max-w-7xl mx-auto px-4 py-8">
+        <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
+          <h1 className="text-2xl font-bold mb-6 flex items-center">
+            <span className="mr-2">🔍</span>
+            기업 연관 분석
+          </h1>
+          
+          <div className="flex flex-wrap items-center gap-4 mb-6">
+            <div className="flex-1 min-w-[200px]">
+              <input
+                type="text"
+                value={companyName}
+                onChange={(e) => setCompanyName(e.target.value)}
+                placeholder="회사명 입력"
+                className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              />
+            </div>
+            
+            <button
+              onClick={fetchData}
+              disabled={loading}
+              className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center"
+            >
+              {loading ? (
+                <>
+                  <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
+                  검색 중...
+                </>
+              ) : '검색'}
+            </button>
+            
+            <div className="flex gap-2 bg-gray-100 p-1 rounded-lg">
+              <button
+                onClick={() => setViewType('keywords')}
+                className={`px-4 py-2 rounded-md transition-colors ${
+                  viewType === 'keywords' 
+                    ? 'bg-white text-blue-600 shadow-sm' 
+                    : 'text-gray-600 hover:bg-gray-200'
+                }`}
+              >
+                키워드 보기
+              </button>
+              <button
+                onClick={() => setViewType('news')}
+                className={`px-4 py-2 rounded-md transition-colors ${
+                  viewType === 'news' 
+                    ? 'bg-white text-blue-600 shadow-sm' 
+                    : 'text-gray-600 hover:bg-gray-200'
+                }`}
+              >
+                뉴스 보기
+              </button>
+            </div>
+          </div>
+        </div>
         
-        <div className="ml-4">
-          <button
-            onClick={() => setViewType('keywords')}
-            className={`px-3 py-1 rounded mr-2 ${
-              viewType === 'keywords' 
-                ? 'bg-blue-500 text-white' 
-                : 'bg-gray-200'
-            }`}
-          >
-            키워드 보기
-          </button>
-          <button
-            onClick={() => setViewType('news')}
-            className={`px-3 py-1 rounded ${
-              viewType === 'news' 
-                ? 'bg-blue-500 text-white' 
-                : 'bg-gray-200'
-            }`}
-          >
-            뉴스 보기
-          </button>
+        <div className="bg-white rounded-lg shadow-sm p-6">
+          <div className="relative" style={{ height: 'calc(100vh - 300px)', minHeight: '600px' }}>
+            {graphData ? (
+              <GraphVisualization 
+                data={graphData}
+                onNodeClick={handleNodeClick}
+                onNodeDoubleClick={handleNodeDoubleClick}
+              />
+            ) : (
+              <div className="absolute inset-0 flex items-center justify-center">
+                {loading ? (
+                  <div className="text-center">
+                    <div className="inline-block animate-spin rounded-full h-8 w-8 border-4 border-blue-500 border-t-transparent mb-2"></div>
+                    <p className="text-gray-600">데이터를 로딩 중입니다...</p>
+                  </div>
+                ) : (
+                  <p className="text-gray-500">검색어를 입력하여 그래프를 확인하세요</p>
+                )}
+              </div>
+            )}
+          </div>
+          
+          <div className="mt-4 bg-gray-50 rounded-lg p-4">
+            <h3 className="text-sm font-medium text-gray-700 mb-2">💡 사용 방법</h3>
+            <ul className="text-sm text-gray-600 space-y-1">
+              <li>• 드래그: 노드 이동</li>
+              <li>• 스크롤: 확대/축소</li>
+              <li>• 더블클릭: 뷰 전환</li>
+            </ul>
+          </div>
         </div>
       </div>
-      
-      <div className="flex-1 border rounded relative" style={{ minHeight: '500px' }}>
-        {graphData ? (
-          <GraphVisualization 
-            data={graphData}
-            onNodeClick={handleNodeClick}
-            onNodeDoubleClick={handleNodeDoubleClick}
-          />
-        ) : (
-          <div className="flex items-center justify-center h-full">
-            {loading ? '데이터를 로딩 중입니다...' : '그래프 데이터가 없습니다'}
-          </div>
-        )}
-      </div>
-      
-      <p className="text-sm text-gray-500 mt-4">
-        그래프 사용법: 드래그로 노드 이동, 스크롤로 확대/축소, 더블클릭으로 뷰 전환
-      </p>
     </main>
   );
 }

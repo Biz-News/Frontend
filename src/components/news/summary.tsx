@@ -7,9 +7,9 @@ export function Summary({
     description,
     type
 }: SummaryProps) {
-    const color = type === 'good' ? 'text-rose-600' : 'text-blue-600';
-    const emoji = type === 'good' ? '😊' : '😢';
-    const bgColor = type === 'good' ? 'bg-rose-50' : 'bg-blue-50';
+    const color = type === '긍정' ? 'text-rose-600' : 'text-blue-600';
+    const emoji = type === '긍정' ? '😊' : '😢';
+    const bgColor = type === '긍정' ? 'bg-rose-50' : 'bg-blue-50';
     return (
         <div className="mb-4 md:mb-6 w-full">
             <h2 className={`${color} text-sm md:text-base leading-6 md:leading-7 

@@ -6,3 +6,4 @@ export * from './keyword';
 export * from './related-companies';
 export * from './chart-link';
 export * from './animated-section';
+export * from './graph-link';

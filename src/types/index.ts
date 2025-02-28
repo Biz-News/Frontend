@@ -44,14 +44,14 @@ export interface NewsSentiment {
         sub_title: string;
         url: string;
         article_text: string[];
-        sentiment: 'good' | 'bad';
+        sentiment: '긍정' | '부정';
         date: string;
     }[]
 }
 
 export interface Summary {
     title: string;
-    summary: string;
+    content: string;
 }
 
 export interface StockInfo {

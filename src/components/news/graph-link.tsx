@@ -1,15 +1,14 @@
 import Link from "next/link";
 
-interface ChartLinkProps {
+interface GraphLinkProps {
   id: string;
   company: string;
-  ticker: string;
 }
 
-export function ChartLink({ id, company, ticker }: ChartLinkProps) {
+export function GraphLink({ id, company }: GraphLinkProps) {
   return (
     <Link 
-      href={`/news/${id}/chart?ticker=${encodeURIComponent(ticker)}`}
+      href={`/news/${id}/graph?company=${company}`}
       className="flex items-center justify-end gap-1 text-gray-500 text-xs my-2 hover:text-gray-700 transition-colors"
     >
       <svg 
@@ -26,8 +25,8 @@ export function ChartLink({ id, company, ticker }: ChartLinkProps) {
         />
       </svg>
       <span>
-         주가 차트 확인하기
+        관계망 그래프 보러가기
       </span>
     </Link>
   );
-} 
+}
