@@ -2,7 +2,13 @@
 
 ## 프로젝트 소개
 
+
+https://github.com/user-attachments/assets/db6c505f-1320-428e-8f59-3a843604a752
+
 BIZN은 기업 뉴스를 한 곳에서 쏙 찾아볼 수 있는 서비스입니다.
+
+## System Architecture
+![423235776-7f14b623-52a4-480f-b1c2-ae27440787b6](https://github.com/user-attachments/assets/eb000f25-6811-4e74-95ca-4b4462e73eef)
 
 ## Next.js 선택 이유
 
